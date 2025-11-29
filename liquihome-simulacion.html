@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquihome.cl - Líquido y más para el hogar</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #333; }
+        header { background-color: #0A74DA; color: white; padding: 1rem; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .logo { font-size: 1.5rem; font-weight: bold; text-align: center; margin: 0; }
+        .search-bar { display: flex; justify-content: center; margin: 1rem 0; }
+        .search-input { padding: 0.5rem; border: none; border-radius: 4px 0 0 4px; width: 300px; }
+        .search-btn { background: #0A74DA; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0 4px 4px 0; cursor: pointer; }
+        .icons { 
+    display: flex; 
+    justify-content: center; /* Centra horizontalmente */
+    gap: 1rem; 
+    margin-left: 0%; /* Desplazamiento sutil; ajusta a 5% o 15% si quieres */
+}
+.icons { list-style: none; padding: 0; margin: 0; display: flex; gap: 1rem; }
+.icons li { margin: 0; }
+.icons a { 
+    text-decoration: none; 
+    color: white; /* Texto blanco */
+    font-weight: bold; 
+    padding: 0.5rem 1rem; 
+    border-radius: 4px; 
+    transition: background 0.3s; 
+    display: flex; align-items: center; 
+    gap: 0.3rem; 
+}
+.icons a:hover { background: rgba(255,255,255,0.2); } /* Hover sutil en blanco translúcido */
+.cart-count { 
+    background: white; 
+    color: #0A74DA; 
+    border-radius: 50%; 
+    padding: 0.2rem 0.5rem; 
+    font-size: 0.8rem; 
+    margin-left: 0.3rem; 
+}
+@media (max-width: 768px) { 
+    .icons ul { flex-direction: column; } 
+    .icons { margin-left: 0; } /* En móvil, centra */
+}
+        nav ul { list-style: none; display: flex; justify-content: center; padding: 0; margin: 0; background: #E3F2FD; }
+        nav li { margin: 0 1rem; }
+        nav a { text-decoration: none; color: #0A74DA; font-weight: bold; padding: 0.5rem 1rem; display: block; transition: background 0.3s; }
+        nav a:hover, .quienes-somos { background: #4CAF50; color: white !important; }
+        .banner { background: linear-gradient(to right, #E3F2FD, white); padding: 100px 20px 50px; text-align: center; margin-top: 80px; }
+        .banner h1 { color: #0A74DA; font-size: 2.5rem; }
+        .cta-btn { background: #4CAF50; color: white; padding: 1rem 2rem; border: none; border-radius: 4px; cursor: pointer; font-size: 1.2rem; }
+        .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; padding: 2rem; }
+        .category-card { background: white; border: 1px solid #E3F2FD; border-radius: 8px; padding: 1rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .category-card:hover { transform: translateY(-5px); }
+        .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding: 2rem; }
+        .product-card { background: white; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; }
+        .product-img { width: 100%; height: 150px; background: #E3F2FD; border-radius: 4px; margin-bottom: 0.5rem; }
+        .discount { background: #0A74DA; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; }
+        .add-btn { background: #4CAF50; color: white; border: none; padding: 0.5rem; border-radius: 4px; cursor: pointer; width: 100%; }
+        .teaser { background: #E3F2FD; padding: 2rem; text-align: center; margin: 2rem; border-radius: 8px; }
+/* Nueva sección Quiénes Somos */
+.quienes-section { 
+    max-width: 800px; 
+    margin: 4rem auto; 
+    padding: 2rem; 
+    background: white; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    text-align: left; 
+}
+.quienes-section h2 { 
+    color: #0A74DA; 
+    font-size: 2rem; 
+    text-align: center; 
+    border-bottom: 2px solid #E3F2FD; 
+    padding-bottom: 1rem; 
+    margin-bottom: 2rem; 
+}
+.quienes-section h3 { 
+    color: #4CAF50; 
+    font-size: 1.5rem; 
+    margin-top: 2rem; 
+    margin-bottom: 1rem; 
+}
+.quienes-section p { 
+    line-height: 1.6; 
+    margin-bottom: 1rem; 
+    text-align: justify; 
+}
+@media (max-width: 768px) { 
+    .quienes-section { margin: 2rem; padding: 1rem; }
+}
+        footer { background: #0A74DA; color: white; padding: 2rem; text-align: center; }
+        .promo { color: #4CAF50; font-weight: bold; }
+        @media (max-width: 768px) { .products { grid-template-columns: repeat(2, 1fr); } nav ul { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">Liquihome.cl</h1>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Buscar productos">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div class="icons">
+        <li><a href="#">👤 MI CUENTA</a></li>
+        <li><a href="#" aria-label="Instagram">📷 INSTAGRAM</a></li>
+        <li><a href="#" aria-label="Facebook">💙 FACEBOOK</a></li>
+        <li><a href="#">🛒 CARRITO <span class="cart-count">(0/0)</span></a></li>
+    </ul>
+</div>
+        <nav>
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="#">TIENDA</a></li>
+                <li><a href="#">POLÍTICAS DE COMPRA</a></li>
+                <li><a href="#">CONTACTO</a></li>
+                <li><a href="#quienes-somos" class="quienes-somos">QUIÉNES SOMOS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="banner">
+    <h1></h1>
+    
+    <img src="https://i.postimg.cc/kJV0LfGh/Banner-5.png" alt="Banner familiar con productos de higiene para Liquihome.cl" style="max-width: 100%; height: 300px; object-fit: contain; border-radius: 8px;">
+    <br><br>
+    <button class="cta-btn">Comprar ahora</button>
+</section>
+
+</section>
+
+    <section class="categories">
+        <div class="category-card">
+            <h3>Infantil y Bebé</h3>
+        </div>
+        <div class="category-card">
+            <h3>Pañales</h3>
+        </div>
+        <div class="category-card">
+            <h3>Cuidado Personal</h3>
+        </div>
+        <div class="category-card">
+            <h3>Cuidado Adulto</h3>
+        </div>
+        <div class="category-card">
+            <h3>Limpieza</h3>
+        </div>
+        <div class="category-card">
+            <h3>Papeles</h3>
+        </div>
+        <div class="category-card">
+            <h3>Ofertas Especiales</h3>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="product-card">
+            <img src="https://www.liquihome.cl/wp-content/uploads/2024/09/159273-800-auto-600x600.png" 
+     alt="COTIDIAN PANTS NOCTURNO TALLA G/XG 8 unidades" 
+     class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" 
+     decoding="async" loading="lazy" 
+     srcset="https://www.liquihome.cl/wp-content/uploads/2024/09/159273-800-auto-600x600.png 600w, https://www.liquihome.cl/wp-content/uploads/2024/09/159273-800-auto-150x150.png 150w, https://www.liquihome.cl/wp-content/uploads/2024/09/159273-800-auto-100x100.png 100w" 
+     sizes="auto, (max-width: 600px) 100vw, 600px"
+     style="width: 100%; max-height: 150px; object-fit: contain; border-radius: 4px; display: block; margin: 0 auto;">
+            <h4>Pañales Cotidian</h4>
+            <span class="discount">-20%</span>
+            <p>$5.990</p>
+            <button class="add-btn">Agregar al carrito</button>
+        </div>
+        <div class="product-card">
+            <img src="https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G-1200x848.png" 
+     alt="3D PLENITUD Pants x 16 G" 
+     class="wp-post-image wp-post-image" 
+     title="3D PLENITUD Pants x 16 G" 
+     data-caption="" 
+     data-src="https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G.png" 
+     data-large_image="https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G.png" 
+     data-large_image_width="3508" 
+     data-large_image_height="2480" 
+     decoding="async" 
+     loading="lazy" 
+     srcset="https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G-1200x848.png 1200w, https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G-300x212.png 300w, https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G-1024x724.png 1024w, https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G-768x543.png 768w, https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G-1536x1086.png 1536w, https://www.liquihome.cl/wp-content/uploads/2022/12/3D-PLENITUD-Pants-x-16-G-2048x1448.png 2048w" 
+     sizes="auto, (max-width: 1200px) 100vw, 1200px"
+     style="width: 100%; max-height: 150px; object-fit: contain; border-radius: 4px; display: block; margin: 0 auto;">
+            <h4>Plenitud Protect+</h4>
+            <span class="discount">-13%</span>
+            <p>$8.490</p>
+            <button class="add-btn">Agregar al carrito</button>
+        </div>
+        <div class="product-card">
+            <img src="https://www.liquihome.cl/wp-content/uploads/2024/07/D_NQ_NP_2X_871620-MLC77797888822_072024-F.webp" 
+     alt="Producto 871620-MLC77797888822" 
+     class="" 
+     title="D_NQ_NP_2X_871620-MLC77797888822_072024-F" 
+     data-caption="" 
+     data-src="https://www.liquihome.cl/wp-content/uploads/2024/07/D_NQ_NP_2X_871620-MLC77797888822_072024-F.webp" 
+     data-large_image="https://www.liquihome.cl/wp-content/uploads/2024/07/D_NQ_NP_2X_871620-MLC77797888822_072024-F.webp" 
+     data-large_image_width="1200" 
+     data-large_image_height="840" 
+     decoding="async" 
+     loading="lazy" 
+     srcset="https://www.liquihome.cl/wp-content/uploads/2024/07/D_NQ_NP_2X_871620-MLC77797888822_072024-F.webp 1200w, https://www.liquihome.cl/wp-content/uploads/2024/07/D_NQ_NP_2X_871620-MLC77797888822_072024-F-300x210.webp 300w, https://www.liquihome.cl/wp-content/uploads/2024/07/D_NQ_NP_2X_871620-MLC77797888822_072024-F-1024x717.webp 1024w, https://www.liquihome.cl/wp-content/uploads/2024/07/D_NQ_NP_2X_871620-MLC77797888822_072024-F-768x538.webp 768w" 
+     sizes="auto, (max-width: 1200px) 100vw, 1200px"
+     style="width: 100%; max-height: 150px; object-fit: contain; border-radius: 4px; display: block; margin: 0 auto;">
+            <h4>Toallas Swan</h4>
+<span class="discount">-10%</span>
+            <p>$3.200</p>
+            <button class="add-btn">Agregar al carrito</button>
+        </div>
+        <div class="product-card">
+            <img src="https://www.liquihome.cl/wp-content/uploads/2025/01/manga-rendioplus-confort-48x20-1.webp" 
+     alt="Manga Rendiplus Confort 48x20" 
+     class="wp-post-image wp-post-image" 
+     title="manga rendioplus confort 48x20" 
+     data-caption="" 
+     data-src="https://www.liquihome.cl/wp-content/uploads/2025/01/manga-rendioplus-confort-48x20-1.webp" 
+     data-large_image="https://www.liquihome.cl/wp-content/uploads/2025/01/manga-rendioplus-confort-48x20-1.webp" 
+     data-large_image_width="1030" 
+     data-large_image_height="717" 
+     decoding="async" 
+     loading="lazy" 
+     srcset="https://www.liquihome.cl/wp-content/uploads/2025/01/manga-rendioplus-confort-48x20-1.webp 1030w, https://www.liquihome.cl/wp-content/uploads/2025/01/manga-rendioplus-confort-48x20-1-300x209.webp 300w, https://www.liquihome.cl/wp-content/uploads/2025/01/manga-rendioplus-confort-48x20-1-1024x713.webp 1024w, https://www.liquihome.cl/wp-content/uploads/2025/01/manga-rendioplus-confort-48x20-1-768x535.webp 768w" 
+     sizes="auto, (max-width: 1030px) 100vw, 1030px"
+     style="width: 100%; max-height: 150px; object-fit: contain; border-radius: 4px; display: block; margin: 0 auto;">
+            <h4>Papel Higiénico Confort Manga</h4>
+            <span class="discount">+19%</span>
+            <p>$4.500</p>
+            <button class="add-btn">Agregar al carrito</button>
+        </div>
+    </section>
+
+    <section class="teaser">
+        <h2>¿Nuevo en Liquihome?</h2>
+        <p>Descubre nuestra <a href="#" style="color: #4CAF50; font-weight: bold;">Historia, Misión y Visión</a> en la pestaña "Quiénes Somos". ¡Somos tu aliado en el cuidado diario!</p>
+
+<!-- Nueva sección Quiénes Somos -->
+<section id="quienes-somos" class="quienes-section">
+    <h2>Quiénes Somos</h2>
+    
+    <h3>Historia</h3>
+    <p>En Liquihome.cl somos la nueva alternativa en el mercado para quienes buscan ahorrar sin renunciar a la calidad. Nuestro propósito es ofrecerte todo lo que necesitas para el cuidado de tu familia y tu hogar, acompañado del mejor servicio y una experiencia de compra confiable.
+Somos un E-commerce innovador, un holding de origen familiar con amplia trayectoria en la venta y distribución de productos de cuidado personal, aseo del hogar entre otros.
+En Liquihome.cl trabajamos para que cada compra sea fácil, segura y conveniente, porque creemos que tu hogar merece lo mejor sin que tengas que pagar de más.</p>
+    
+    <h3>Nuestra Misión</h3>
+    <p>En Liquihome.cl trabajamos para mejorar la calidad de vida y el bienestar de las personas, ofreciendo una atención cercana y productos confiables que cuidan tu salud y tu hogar. Nos enfocamos en brindar soluciones accesibles en el bienestar personal, con precios justos para que cada cliente.</p>
+    
+    <h3>Nuestra Visión</h3>
+    <p>Convertirnos en una marca confiable y cercana, reconocida por ofrecer una experiencia personalizada tanto a nuestros clientes como a nuestros colaboradores. Queremos ser una empresa que inspira confianza, que genere vínculos duraderos y se preocupe realmente por las personas.</p>
+
+
+    </section>
+
+
+    <footer>
+        <p>Envíos gratis en compras sobre <span class="promo">$20.000</span></p>
+        <nav>
+            <a href="#" style="color: white; margin: 0 1rem;">Política de Privacidad</a>
+            <a href="#" style="color: white; margin: 0 1rem;">Términos y Condiciones</a>
+            <a href="#" style="color: white; margin: 0 1rem;">Contacto</a>
+            <a href="#" style="color: white; margin: 0 1rem;">Quiénes Somos</a>
+        </nav>
+        <p>Síguenos: <a href="#" style="color: white;">Instagram</a> | <a href="#" style="color: white;">Facebook</a></p>
+        <p>&copy; 2025 Liquihome.cl. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
